@@ -5,16 +5,8 @@ import { Stack } from "expo-router";
 import { useDismissibleSplash } from "@/src/hooks/useDismissibleSplash";
 import SplashScreen from "@/src/screens/SplashScreen";
 
-export default function RootLayout() {
-  const [fontsLoaded] = useFonts({
-    PressStart2P: PressStart2P_400Regular,
-  });
-
+function RootLayoutContent() {
   const splash = useDismissibleSplash();
-
-  if (!fontsLoaded) {
-    return null;
-  }
 
   return (
     <>
@@ -29,4 +21,15 @@ export default function RootLayout() {
       )}
     </>
   );
+}
+export default function RootLayout() {
+  const [fontsLoaded] = useFonts({
+    PressStart2P: PressStart2P_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  <RootLayoutContent />;
 }
