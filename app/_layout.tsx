@@ -31,5 +31,5 @@ export default function RootLayout() {
     return null;
   }
 
-  <RootLayoutContent />;
+  return <RootLayoutContent />;
 }
