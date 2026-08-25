@@ -1,9 +1,14 @@
 import { PressStart2P_400Regular } from "@expo-google-fonts/press-start-2p";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
-
+import Toast, { ToastConfig, type BaseToastProps } from "react-native-toast-message";
+import CustomToast from "@/src/components/CustomToast";
 import { useDismissibleSplash } from "@/src/hooks/useDismissibleSplash";
 import SplashScreen from "@/src/screens/SplashScreen";
+
+export const toastConfig : ToastConfig= {
+  custom: (props) => <CustomToast {...props} />,
+};
 
 function RootLayoutContent() {
   const splash = useDismissibleSplash();
@@ -19,6 +24,7 @@ function RootLayoutContent() {
       {splash.visible && (
         <SplashScreen visible={splash.visible} phase={splash.phase} onDismiss={splash.onDismiss} />
       )}
+      <Toast config={toastConfig} />
     </>
   );
 }
