@@ -1,9 +1,9 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
+import PixelText from "@/src/components/PixelText";
 import { GAME_MODES } from "@/src/constants";
+import { useNavigateGameMode } from "@/src/hooks/useNavigationGameMode";
 // import { useGlobalModal } from "@/src/stores/globalModalStore";
 import type { GameMode } from "@/src/types";
-import { useNavigateGameMode } from "@/src/hooks/useNavigationGameMode";
-import PixelText from "@/src/components/PixelText";
 
 const MenuLayout = ({ children }: { children: React.ReactNode }) => {
   return <View style={styles.container}>{children}</View>;
@@ -53,19 +53,23 @@ export default function Menu() {
           ))}
         </View>
         <View>
-            <Pressable
-              onPress={() => console.log("Settings is open")}
-              style={({ pressed }) => [styles.card, pressed && styles.cardPressed , {marginTop: 16}]}>
-              <View style={styles.iconBox}>
-                <PixelText style={styles.icon}>%</PixelText>
-              </View>
+          <Pressable
+            onPress={() => console.log("Settings is open")}
+            style={({ pressed }) => [
+              styles.card,
+              pressed && styles.cardPressed,
+              { marginTop: 16 },
+            ]}>
+            <View style={styles.iconBox}>
+              <PixelText style={styles.icon}>%</PixelText>
+            </View>
 
-              <View style={styles.textContainer}>
-                <PixelText style={styles.cardTitle}>Setting</PixelText>
+            <View style={styles.textContainer}>
+              <PixelText style={styles.cardTitle}>Setting</PixelText>
 
-                <PixelText style={styles.description}>TAP MORE FOR SETTINGS & OPTIONS</PixelText>
-              </View>
-            </Pressable>
+              <PixelText style={styles.description}>TAP MORE FOR SETTINGS & OPTIONS</PixelText>
+            </View>
+          </Pressable>
         </View>
       </View>
     </MenuLayout>
@@ -152,7 +156,6 @@ const styles = StyleSheet.create({
   },
 
   cardTitle: {
-    
     fontSize: 14,
     color: "#e4d8c0",
     letterSpacing: 1,

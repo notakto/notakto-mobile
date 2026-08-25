@@ -1,4 +1,3 @@
-import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import type { ToastConfigParams } from "react-native-toast-message";
 
