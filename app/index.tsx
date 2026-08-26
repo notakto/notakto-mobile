@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { Pressable, StyleSheet, View } from "react-native";
 import PixelText from "@/src/components/PixelText";
 import { GAME_MODES } from "@/src/constants";
@@ -18,6 +19,7 @@ interface GameModeItem {
 }
 
 export default function Menu() {
+  const router = useRouter();
   const startGame = useNavigateGameMode();
   //   const { activeModal, openModal, _closeModal } = useGlobalModal();
 
@@ -54,7 +56,7 @@ export default function Menu() {
         </View>
         <View>
           <Pressable
-            onPress={() => console.log("Settings is open")}
+            onPress={() => router.push("/settings")}
             style={({ pressed }) => [
               styles.card,
               pressed && styles.cardPressed,

@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
 
     overflow: "hidden",
+    marginTop: 35,
   },
 
   content: {
