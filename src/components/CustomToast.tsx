@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
 
   content: {
-    flexGrow:1,
+    flexGrow: 1,
     minHeight: 42,
 
     paddingLeft: 14,

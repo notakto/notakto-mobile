@@ -1,14 +1,13 @@
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { initializeApp } from "firebase/app";
 import {
+  GoogleAuthProvider,
   getAuth,
   onAuthStateChanged,
-  signOut,
-  GoogleAuthProvider,
   signInWithCredential,
+  signOut,
   type User,
 } from "firebase/auth";
-
-import { GoogleSignin } from "@react-native-google-signin/google-signin";
 
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
@@ -60,8 +59,6 @@ export const signOutUser = async () => {
   }
 };
 
-export const onAuthStateChangedListener = (
-  callback: (user: User | null) => void
-): (() => void) => {
+export const onAuthStateChangedListener = (callback: (user: User | null) => void): (() => void) => {
   return onAuthStateChanged(auth, callback);
 };

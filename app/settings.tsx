@@ -62,11 +62,7 @@ export default function Settings() {
         <View style={styles.header}>
           <Pressable
             onPress={() => router.replace("/")}
-            style={({ pressed }) => [
-              styles.backButton,
-              pressed && styles.buttonPressed,
-            ]}
-          >
+            style={({ pressed }) => [styles.backButton, pressed && styles.buttonPressed]}>
             <PixelText style={styles.backIcon}>X</PixelText>
           </Pressable>
 
@@ -79,23 +75,15 @@ export default function Settings() {
             <Pressable
               key={item.action}
               onPress={() => handleSettingPress(item.action)}
-              style={({ pressed }) => [
-                styles.card,
-                pressed && styles.cardPressed,
-              ]}
-            >
+              style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}>
               <View style={styles.iconBox}>
                 <PixelText style={styles.icon}>{item.icon}</PixelText>
               </View>
 
               <View style={styles.textContainer}>
-                <PixelText style={styles.cardTitle}>
-                  {item.title}
-                </PixelText>
+                <PixelText style={styles.cardTitle}>{item.title}</PixelText>
 
-                <PixelText style={styles.description}>
-                  {item.description}
-                </PixelText>
+                <PixelText style={styles.description}>{item.description}</PixelText>
               </View>
 
               <PixelText style={styles.arrow}>{">"}</PixelText>

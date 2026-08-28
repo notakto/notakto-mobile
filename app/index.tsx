@@ -1,15 +1,14 @@
 import { useRouter } from "expo-router";
+import { onAuthStateChanged } from "firebase/auth";
+import { useEffect } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import PixelText from "@/src/components/PixelText";
 import { GAME_MODES } from "@/src/constants";
 import { useNavigateGameMode } from "@/src/hooks/useNavigationGameMode";
+import { auth } from "@/src/lib/firebase";
+import { useUser } from "@/src/stores/userStore";
 // import { useGlobalModal } from "@/src/stores/globalModalStore";
 import type { GameMode } from "@/src/types";
-import { useUser } from "@/src/stores/userStore";
-import { onAuthStateChanged } from "firebase/auth";
-import { useEffect } from "react";
-import { auth } from "@/src/lib/firebase";
-
 
 const MenuLayout = ({ children }: { children: React.ReactNode }) => {
   return <View style={styles.container}>{children}</View>;
@@ -27,7 +26,7 @@ export default function Menu() {
   const router = useRouter();
   const startGame = useNavigateGameMode();
 
-    const setUser = useUser((state) => state.setUser);
+  const setUser = useUser((state) => state.setUser);
   const setAuthReady = useUser((state) => state.setAuthReady);
 
   useEffect(() => {
