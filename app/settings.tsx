@@ -58,11 +58,16 @@ export default function Settings() {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
+        {/* Header */}
         <View style={styles.header}>
           <Pressable
-            onPress={() => router.back()}
-            style={({ pressed }) => [styles.backButton, pressed && styles.buttonPressed]}>
-            <PixelText style={styles.backIcon}>{"X"}</PixelText>
+            onPress={() => router.replace("/")}
+            style={({ pressed }) => [
+              styles.backButton,
+              pressed && styles.buttonPressed,
+            ]}
+          >
+            <PixelText style={styles.backIcon}>X</PixelText>
           </Pressable>
 
           <PixelText style={styles.mainTitle}>SETTINGS</PixelText>
@@ -74,15 +79,23 @@ export default function Settings() {
             <Pressable
               key={item.action}
               onPress={() => handleSettingPress(item.action)}
-              style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}>
+              style={({ pressed }) => [
+                styles.card,
+                pressed && styles.cardPressed,
+              ]}
+            >
               <View style={styles.iconBox}>
                 <PixelText style={styles.icon}>{item.icon}</PixelText>
               </View>
 
               <View style={styles.textContainer}>
-                <PixelText style={styles.cardTitle}>{item.title}</PixelText>
+                <PixelText style={styles.cardTitle}>
+                  {item.title}
+                </PixelText>
 
-                <PixelText style={styles.description}>{item.description}</PixelText>
+                <PixelText style={styles.description}>
+                  {item.description}
+                </PixelText>
               </View>
 
               <PixelText style={styles.arrow}>{">"}</PixelText>
@@ -99,22 +112,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#0e0e1a",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
 
   content: {
     width: "100%",
     maxWidth: 672,
     paddingHorizontal: 22,
-    // height:"100%",
-    // flexDirection:"column",
-    // justifyContent:"center",
-    // alignItems:"center",
-    // backgroundColor:"#480707"
+    paddingTop: 30,
   },
+
   header: {
-    flexDirection: "column",
-    gap: 55,
+    width: "100%",
+    position: "relative",
   },
 
   backButton: {
@@ -128,8 +138,9 @@ const styles = StyleSheet.create({
   },
 
   backIcon: {
-    fontSize: 18,
+    fontSize: 22,
     color: "#e4d8c0",
+    textAlign: "center",
   },
 
   buttonPressed: {
@@ -140,7 +151,8 @@ const styles = StyleSheet.create({
     fontSize: 28,
     letterSpacing: 4,
     color: "#c43c3c",
-    marginBottom: 12,
+    marginTop: 55,
+    marginBottom: 52,
     textAlign: "center",
   },
 

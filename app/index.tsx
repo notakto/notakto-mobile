@@ -5,6 +5,11 @@ import { GAME_MODES } from "@/src/constants";
 import { useNavigateGameMode } from "@/src/hooks/useNavigationGameMode";
 // import { useGlobalModal } from "@/src/stores/globalModalStore";
 import type { GameMode } from "@/src/types";
+import { useUser } from "@/src/stores/userStore";
+import { onAuthStateChanged } from "firebase/auth";
+import { useEffect } from "react";
+import { auth } from "@/src/lib/firebase";
+
 
 const MenuLayout = ({ children }: { children: React.ReactNode }) => {
   return <View style={styles.container}>{children}</View>;
@@ -21,6 +26,18 @@ interface GameModeItem {
 export default function Menu() {
   const router = useRouter();
   const startGame = useNavigateGameMode();
+
+    const setUser = useUser((state) => state.setUser);
+  const setAuthReady = useUser((state) => state.setAuthReady);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setAuthReady(true);
+    });
+
+    return unsubscribe;
+  }, [setUser, setAuthReady]);
   //   const { activeModal, openModal, _closeModal } = useGlobalModal();
 
   return (

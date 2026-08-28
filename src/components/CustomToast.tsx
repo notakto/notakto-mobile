@@ -20,6 +20,8 @@ const CustomToast = ({ text1, text2, hide }: ToastConfigParams<Record<string, ne
         </View>
 
         <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Dismiss notification"
           onPress={() => hide()}
           style={({ pressed }) => [styles.closeButton, pressed && styles.closeButtonPressed]}>
           <PixelText style={styles.closeText}>×</PixelText>
@@ -54,6 +56,7 @@ const styles = StyleSheet.create({
   },
 
   content: {
+    flexGrow:1,
     minHeight: 42,
 
     paddingLeft: 14,

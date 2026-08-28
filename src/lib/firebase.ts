@@ -1,12 +1,14 @@
 import { initializeApp } from "firebase/app";
 import {
-  GoogleAuthProvider,
   getAuth,
   onAuthStateChanged,
-  signInWithPopup,
   signOut,
+  GoogleAuthProvider,
+  signInWithCredential,
   type User,
 } from "firebase/auth";
+
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
@@ -19,12 +21,28 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
+export const auth = getAuth(app);
+
+GoogleSignin.configure({
+  webClientId: process.env.EXPO_PUBLIC_FIREBASE_WEB_CLIENT_ID,
+});
 
 export const signInWithGoogle = async (): Promise<User> => {
   try {
-    const result = await signInWithPopup(auth, provider);
+    await GoogleSignin.hasPlayServices();
+
+    const response = await GoogleSignin.signIn();
+
+    const idToken = response.data?.idToken;
+
+    if (!idToken) {
+      throw new Error("No Google ID token received");
+    }
+
+    const credential = GoogleAuthProvider.credential(idToken);
+
+    const result = await signInWithCredential(auth, credential);
+
     return result.user;
   } catch (error) {
     console.error("Google Sign-In error:", error);
@@ -34,6 +52,7 @@ export const signInWithGoogle = async (): Promise<User> => {
 
 export const signOutUser = async () => {
   try {
+    await GoogleSignin.signOut();
     await signOut(auth);
   } catch (error) {
     console.error("Sign out error:", error);
@@ -41,6 +60,8 @@ export const signOutUser = async () => {
   }
 };
 
-export const onAuthStateChangedListener = (callback: (user: User | null) => void): (() => void) => {
+export const onAuthStateChangedListener = (
+  callback: (user: User | null) => void
+): (() => void) => {
   return onAuthStateChanged(auth, callback);
 };
