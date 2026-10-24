@@ -23,7 +23,14 @@ npm install
 npx expo start
 ```
 
-3. Scan the QR code with Expo Go or run it on an emulator.
+3. Copy `.env.example` to `.env` and fill in the Firebase values (placeholders only, no real keys are committed).
+
+4. Scan the QR code with Expo Go or run it on an emulator.
+
+## Testing and builds
+
+See [docs/testing.md](docs/testing.md) for running the tests and the manual EAS Build workflow
+(needs the `EXPO_TOKEN` repository secret, see `.env.example`).
 
 ## Project Structure
 

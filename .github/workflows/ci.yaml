@@ -34,6 +34,9 @@ jobs:
       - name: Biome Check
         run: npm run check
 
+      - name: Test
+        run: npm run test:ci
+
       - name: Expo Doctor
         run: npx --no-install expo-doctor
 
